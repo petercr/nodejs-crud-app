@@ -39,11 +39,12 @@ module.exports = server => {
             // Authenticate user
             const user = await auth.authenticate(email, password);
             console.log(user);
-            
             // Create JWT
             const token = jwt.sign(user.toJSON(), config.JWT_SECRET, {
                 expiresIn: '15m'
             });
+            console.log(jwt.decode(token));
+
 
             // Respond with token
             const {iat, exp} = jwt.decode(token);
